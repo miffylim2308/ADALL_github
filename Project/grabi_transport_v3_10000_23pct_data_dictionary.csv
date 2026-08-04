@@ -1,0 +1,50 @@
+Column,Data Type,Short Description,Detailed Description,Example
+booking_id,object,Unique identifier for each booking.,A unique identifier assigned to each ride booking. It is used to distinguish one booking from another and has no predictive value for machine learning.,BK2026007041
+booking_datetime,object,Date and time when the booking was made.,"The date and time when the customer submitted the booking request. This can be used to derive features such as booking hour, weekday, or seasonality.",6/3/2026 0:10
+booking_hour,int64,Hour of booking (0-23).,The hour of the day (0–23) when the booking was made. Useful for identifying peak travel periods and customer booking behaviour.,0
+day_of_week,object,Day of the week.,"The day of the week when the booking was made (e.g., Monday, Friday). Travel demand and cancellation patterns often vary across weekdays and weekends.",Friday
+month,int64,Month of booking.,The calendar month in which the booking occurred. Useful for analysing seasonal trends.,3
+is_weekend,int64,Weekend indicator.,Indicates whether the booking was made on a weekend (Yes/No or 1/0). Weekend travel behaviour often differs from weekdays.,0
+is_peak_hour,int64,Peak-hour indicator.,Indicates whether the booking occurred during peak commuting hours when demand is typically high.,0
+is_late_night,int64,Late-night indicator.,Indicates whether the booking was made during late-night hours when driver availability may be lower.,1
+public_holiday,int64,Public holiday indicator.,"Indicates whether the booking occurred on a public holiday, which may influence demand and driver availability.",0
+pickup_zone,object,Pickup location.,The geographical area where the customer requested pickup.,Queenstown
+pickup_zone_type,object,Pickup zone category.,"The category of the pickup area (e.g., residential, commercial, airport).",Residential
+dropoff_zone,object,Drop-off location.,The geographical destination requested by the customer.,Orchard
+dropoff_zone_type,object,Drop-off zone category.,"The category of the destination area (e.g., residential, commercial, airport).",Retail
+airport_trip,int64,Airport trip indicator.,Indicates whether the trip involves an airport. Airport trips may have different cancellation behaviour due to flight schedules.,0
+cbd_trip,int64,CBD trip indicator.,"Indicates whether the trip involves the Central Business District, where traffic and demand are often higher.",0
+distance_km,float64,Estimated trip distance (km).,Estimated travel distance from pickup to destination in kilometres before the trip starts.,5.8
+estimated_trip_duration_min,float64,Estimated trip duration (minutes).,Estimated travel time in minutes based on the planned route and expected traffic conditions.,9.7
+vehicle_type,object,Requested vehicle type.,"The ride service selected by the customer (e.g., Standard, Premium, XL).",JustGrab
+payment_method,object,Payment method.,"The payment option selected by the customer, such as cash or card.",GrabPay
+customer_segment,object,Customer segment.,"Classification of the customer based on usage behaviour, loyalty, or business rules.",New
+loyalty_tier,object,Loyalty tier.,The customer's membership or rewards level within the platform.,Gold
+customer_tenure_days,int64,Customer tenure (days).,Number of days since the customer first registered with the platform.,2
+rides_last_7_days,int64,Trips in last 7 days.,Number of rides booked by the customer during the previous seven days.,0
+rides_last_30_days,int64,Trips in last 30 days.,Number of rides booked by the customer during the previous thirty days.,2
+customer_cancel_rate_90d,float64,Cancellation rate in previous 90 days.,The proportion of the customer's bookings that were cancelled during the previous 90 days. A higher value indicates a stronger history of cancelling rides.,0.106
+previous_customer_cancellations,int64,Previous cancellations.,The total number of bookings cancelled by the customer before the current booking.,2
+avg_previous_wait_time_min,float64,Average previous wait time (minutes).,"The customer's average waiting time for previous bookings, measured in minutes.",6
+customer_rating,float64,Customer rating.,Average rating received by the customer from drivers.,4.37
+driver_rating,float64,Driver rating.,Average rating received by the assigned driver from customers.,4.58
+active_driver_supply_zone,int64,Available drivers in zone.,Estimated number of available drivers in the pickup zone at booking time.,92
+booking_demand_zone,int64,Booking demand in zone.,Estimated number of booking requests in the pickup zone at booking time.,61
+supply_demand_ratio,float64,Supply-to-demand ratio.,Ratio of available drivers to booking demand. Lower values indicate driver shortages and potentially longer waiting times.,1.51
+nearby_driver_count,int64,Nearby available drivers.,Number of available drivers located near the pickup location when the booking was made.,9
+drivers_declined_before_accept,int64,Drivers declining before acceptance.,Number of drivers who rejected the booking request before one accepted it.,0
+driver_acceptance_time_sec,int64,Driver acceptance time (seconds).,"Time, in seconds, taken for a driver to accept the booking after it was requested.",37
+driver_distance_to_pickup_km,float64,Driver distance to pickup (km).,Estimated distance between the assigned driver and the customer's pickup location.,1.28
+driver_eta_min,float64,Estimated driver arrival time (minutes).,Estimated number of minutes for the assigned driver to arrive at the pickup location.,5.5
+weather,object,Weather condition.,"Weather condition at the time of booking (e.g., Sunny, Rainy, Stormy).",Light Rain
+is_raining,int64,Rain indicator.,Indicates whether it was raining at the time of booking.,1
+traffic_level,object,Traffic condition.,"Traffic condition at booking time (e.g., Low, Medium, High). Heavy traffic can increase waiting time and cancellation risk.",Medium
+surge_multiplier,float64,Dynamic pricing multiplier.,Dynamic pricing multiplier applied because of demand exceeding available driver supply.,1.1
+surge_changed_after_booking,int64,Surge changed after booking indicator.,Indicates whether the surge multiplier changed after the booking was created.,0
+promo_applied,int64,Promotion applied indicator.,Indicates whether a promotional discount or voucher was applied to the booking.,0
+promo_discount_sgd,int64,Promotion discount (SGD).,"Value of the promotional discount applied to the booking, measured in Singapore dollars (SGD).",0
+estimated_fare_sgd,float64,Estimated fare (SGD).,"Estimated fare for the trip before it begins, measured in Singapore dollars (SGD).",11.66
+app_version,object,Application version.,Version of the mobile application used to make the booking.,Current
+network_quality,object,Network quality.,"Quality of the customer's mobile network connection during booking (e.g., Good, Fair, Poor).",Good
+customer_cancelled,int64,"Target: 1=Cancelled before trip, 0=Not cancelled.","Target variable for machine learning. Value 1 indicates the customer cancelled the booking before pickup, while 0 indicates the booking was not cancelled.",0
+cancel_reason,object,Cancellation reason.,"Reason recorded for the customer's cancellation, such as long waiting time or high fare. This column should not be used for prediction because it is only known after a cancellation occurs.",Not Cancelled
